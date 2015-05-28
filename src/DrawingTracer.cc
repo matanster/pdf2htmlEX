@@ -290,7 +290,11 @@ void DrawingTracer::draw_non_char_bbox(GfxState * state, double * bbox)
 
 void DrawingTracer::draw_char_bbox(GfxState * state, double * bbox)
 {
+
+printf("character bounding box: [%f,%f,%f,%f]\n",bbox[0],bbox[1],bbox[2],bbox[3]);
+
 #if ENABLE_SVG
+
     // Note: even if 4 corners of the char are all in or all out of the clip area,
     // it could still be partially clipped.
     // TODO better solution?

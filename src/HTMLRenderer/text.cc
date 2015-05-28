@@ -74,7 +74,9 @@ void HTMLRenderer::drawString(GfxState * state, GooString * s)
     while (len > 0) 
     {
         auto n = font->getNextChar(p, len, &code, &u, &uLen, &ax, &ay, &ox, &oy);
-        HR_DEBUG(printf("HTMLRenderer::drawString:unicode=%lc(%d)\n", (wchar_t)u[0], u[0]));
+
+        if (u) printf("unicode character: %lc (decimal value %d)\n", (wchar_t)u[0], u[0]);
+        else printf("character that could not be mapped to unicode\n (%d)", p[0]);
 
         if(!(equal(ox, 0) && equal(oy, 0)))
         {

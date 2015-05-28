@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
 
 option(ENABLE_SVG "Enable SVG support, for generating SVG background images and converting Type 3 fonts" ON)
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src /usr/local/include/poppler)
 
 set(PDF2HTMLEX_VERSION "0.13.6")
 set(ARCHIVE_NAME pdf2htmlex-${PDF2HTMLEX_VERSION})
@@ -21,7 +21,7 @@ find_package(PkgConfig)
 
 pkg_check_modules(POPPLER REQUIRED poppler>=0.25.0)
 include_directories(${POPPLER_INCLUDE_DIRS})
-link_directories(${POPPLER_LIBRARY_DIRS})
+link_directories(${POPPLER_LIBRARY_DIRS} /usr/local/lib)
 set(PDF2HTMLEX_LIBS ${PDF2HTMLEX_LIBS} ${POPPLER_LIBRARIES})
 
 if(ENABLE_SVG)
