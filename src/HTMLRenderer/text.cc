@@ -33,6 +33,7 @@ void HTMLRenderer::drawString(GfxState * state, GooString * s)
     double cur_word_space   = state->getWordSpace();
     double cur_horiz_scaling = state->getHorizScaling();
 
+    state->getFont()->getName() ? printf("font: %s\n", state->getFont()->getName()->getCString()) : printf("font unknown\n");
 
     // Writing mode fonts and Type 3 fonts are rendered as images
     // I don't find a way to display writing mode fonts in HTML except for one div for each character, which is too costly
@@ -76,7 +77,7 @@ void HTMLRenderer::drawString(GfxState * state, GooString * s)
         auto n = font->getNextChar(p, len, &code, &u, &uLen, &ax, &ay, &ox, &oy);
 
         if (u) printf("unicode character: %lc (decimal value %d)\n", (wchar_t)u[0], u[0]);
-        else printf("character that could not be mapped to unicode\n (%d)", p[0]);
+        else printf("character that could not be mapped to unicode (decimal value %d)\n", p[0]);
 
         if(!(equal(ox, 0) && equal(oy, 0)))
         {
